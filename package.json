@@ -1,23 +1,25 @@
 {
-  "name": "casa-do-codigo",
-  "version": "1.0.0",
-  "description": "Livraria casa do codigo",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joaobispo2077/casa-do-codigo.git"
-  },
-  "author": "João Bispo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/joaobispo2077/casa-do-codigo/issues"
-  },
-  "homepage": "https://github.com/joaobispo2077/casa-do-codigo#readme",
-  "dependencies": {
-    "express": "4.16.3"
-  }
+    "name": "casa-do-codigo",
+    "version": "1.0.0",
+    "description": "Livraria casa do codigo",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js --ignore *.marko.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/joaobispo2077/casa-do-codigo.git"
+    },
+    "author": "João Bispo",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/joaobispo2077/casa-do-codigo/issues"
+    },
+    "homepage": "https://github.com/joaobispo2077/casa-do-codigo#readme",
+    "dependencies": {
+        "express": "4.16.3",
+        "marko": "4.13.4-1",
+        "nodemon": "^1.18.4"
+    }
 }
