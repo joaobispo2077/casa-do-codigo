@@ -1,0 +1,20 @@
+{
+  "name": "casa-do-codigo",
+  "version": "1.0.0",
+  "description": "Livraria casa do codigo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaobispo2077/casa-do-codigo.git"
+  },
+  "author": "João Bispo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaobispo2077/casa-do-codigo/issues"
+  },
+  "homepage": "https://github.com/joaobispo2077/casa-do-codigo#readme"
+}
