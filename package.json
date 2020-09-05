@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/joaobispo2077/casa-do-codigo/issues"
   },
-  "homepage": "https://github.com/joaobispo2077/casa-do-codigo#readme"
+  "homepage": "https://github.com/joaobispo2077/casa-do-codigo#readme",
+  "dependencies": {
+    "express": "4.16.3"
+  }
 }
