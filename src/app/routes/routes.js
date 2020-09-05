@@ -1,3 +1,6 @@
+const LivroDao = require('../dao/livroDao');
+const db = require('../../config/database');
+
 module.exports = (app) => {
     app.get('/', function(request, response) {
         response.send(`
@@ -13,18 +16,14 @@ module.exports = (app) => {
     });
 
     app.get('/livros', function(request, response) {
-        response.marko(
-            require('../views/books/lista/lista.marko'), {
-                livros: [{
-                        id: 1,
-                        titulo: 'Fundamentos do Node'
-                    },
-                    {
-                        id: 2,
-                        titulo: 'Node Avançado'
-                    }
-                ]
-            }
-        );
+
+        const livroDao = new LivroDao(db);
+        livroDao.index(function(err, result) {
+            response.marko(
+                require('../views/books/lista/lista.marko'), {
+                    livros: result
+                }
+            );
+        });
     });
 }
