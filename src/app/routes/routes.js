@@ -38,9 +38,7 @@ module.exports = (app) => {
 
         const livroDao = new LivroDao(db);
         livroDao.create(request.body)
-            .then(
-                //create livro on database
-            )
+            .then(response.redirect('/livros'))
             .catch(err => console.log(err));
     })
 }
