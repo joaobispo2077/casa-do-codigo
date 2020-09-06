@@ -41,4 +41,16 @@ module.exports = (app) => {
             .then(response.redirect('/livros'))
             .catch(err => console.log(err));
     })
+
+    app.delete('/livros/:id', function(request, response) {
+        const id = request.params.id;
+        const livroDao = new LivroDao();
+
+        livroDao.remove(id)
+            .then(() => {
+                response.status(200).end();
+                alert('Livro removido com sucesso!');
+            })
+            .catch(err => console.log(err));
+    })
 }
