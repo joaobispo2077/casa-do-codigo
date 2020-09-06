@@ -4,6 +4,7 @@ class LivroDao {
     }
 
     index() {
+
         return new Promise((resolve, reject) => {
 
             this._db.all(
@@ -18,6 +19,7 @@ class LivroDao {
     }
 
     create(livro) {
+
         return new Promise((resolve, reject) => {
             this._db.run(`
                 INSERT INTO livros (
@@ -34,8 +36,28 @@ class LivroDao {
                     console.log(err);
                     return reject('Não foi possível adicionar o livro');
                 }
+                resolve();
             });
         })
+    }
+
+    searchForId(id) {
+
+        return new Promise((resolve, reject) => {
+            this._db.get(
+                `
+                    SELECT *
+                    FROM livros
+                    WHERE id = ?
+                `, [id],
+                (err, livro) => {
+                    if (err) {
+                        return reject('Não foi possível encontrar o livro!');
+                    }
+                    return resolve(livro);
+                }
+            );
+        });
     }
 }
 
