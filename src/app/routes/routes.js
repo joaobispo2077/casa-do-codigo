@@ -44,13 +44,10 @@ module.exports = (app) => {
 
     app.delete('/livros/:id', function(request, response) {
         const id = request.params.id;
-        const livroDao = new LivroDao();
 
+        const livroDao = new LivroDao(db);
         livroDao.remove(id)
-            .then(() => {
-                response.status(200).end();
-                alert('Livro removido com sucesso!');
-            })
+            .then(() => response.status(200).end())
             .catch(err => console.log(err));
     })
 }

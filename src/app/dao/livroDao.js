@@ -75,8 +75,8 @@ class LivroDao {
                     livro.descricao,
                     livro.id
                 ],
-                erro => {
-                    if (erro) {
+                err => {
+                    if (err) {
                         return reject('Não foi possível atualizar o livro!');
                     }
 
@@ -86,7 +86,6 @@ class LivroDao {
     }
 
     remove(id) {
-
         return new Promise((resolve, reject) => {
             this._db.run(
                 `
@@ -94,8 +93,8 @@ class LivroDao {
                     FROM livros
                     WHERE id = ?
                 `, [id],
-                (erro) => {
-                    if (erro) {
+                (err) => {
+                    if (err) {
                         return reject('Não foi possível remover o livro!');
                     }
                     return resolve();
