@@ -22,6 +22,7 @@
         "body-parser": "1.18.3",
         "express": "4.16.3",
         "marko": "4.13.4-1",
+        "method-override": "3.0.0",
         "nodemon": "^1.18.4",
         "sqlite3": "^5.0.0"
     }
