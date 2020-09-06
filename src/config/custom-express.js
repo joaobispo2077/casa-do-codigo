@@ -4,6 +4,12 @@ require('marko/express');
 const express = require('express');
 const app = express();
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({
+    extended: true, //config: receiving complex objects in JSON format
+}))
+
 const routes = require('../app/routes/routes');
 routes(app);
 

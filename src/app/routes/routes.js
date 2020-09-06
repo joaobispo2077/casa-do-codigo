@@ -26,14 +26,21 @@ module.exports = (app) => {
                     }
                 ))
             .catch(err => console.log(err));
-
-        // livroDao.index(function(err, result) {
-
-        //     response.marko(
-        //         require('../views/books/lista/lista.marko'), {
-        //             livros: result
-        //         }
-        //     );
-        // });
     });
+
+    app.get('/livros/form', function(request, response) {
+        response.marko(require('../views/books/form/form.marko'));
+    });
+
+
+    app.post('/livros', function(request, response) {
+        console.log(request.body);
+
+        const livroDao = new LivroDao(db);
+        livroDao.create(request.body)
+            .then(
+                //create livro on database
+            )
+            .catch(err => console.log(err));
+    })
 }

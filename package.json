@@ -5,7 +5,8 @@
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon server.js --ignore *.marko.js"
+        "start": "nodemon server.js --ignore *.marko.js",
+        "marko": "node server.js"
     },
     "repository": {
         "type": "git",
@@ -18,6 +19,7 @@
     },
     "homepage": "https://github.com/joaobispo2077/casa-do-codigo#readme",
     "dependencies": {
+        "body-parser": "1.18.3",
         "express": "4.16.3",
         "marko": "4.13.4-1",
         "nodemon": "^1.18.4",
