@@ -84,6 +84,25 @@ class LivroDao {
                 });
         });
     }
+
+    remove(id) {
+
+        return new Promise((resolve, reject) => {
+            this._db.run(
+                `
+                    DELETE 
+                    FROM livros
+                    WHERE id = ?
+                `, [id],
+                (erro) => {
+                    if (erro) {
+                        return reject('Não foi possível remover o livro!');
+                    }
+                    return resolve();
+                }
+            );
+        });
+    }
 }
 
 module.exports = LivroDao;
