@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride(function(request, response) {
     if (request.body && typeof request.body === 'object' && '_method' in request.body) {
-        // look in urlencoded POST bodies and delete it
+        //reminder: look in urlencoded POST bodies and delete it
         var method = request.body._method;
         delete request.body._method;
         return method;
