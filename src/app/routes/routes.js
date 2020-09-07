@@ -23,7 +23,7 @@ module.exports = (app) => {
         response.marko(require('../views/books/livros/form/form.marko'), { livro: {} });
     });
 
-    app.get('/livros/livros/form/:id', function(req, resp) {
+    app.get('/livros/form/:id', function(req, resp) {
         const id = req.params.id;
         const livroDao = new LivroDao(db);
 
