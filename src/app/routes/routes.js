@@ -23,12 +23,12 @@ module.exports = (app) => {
     app.get('/livros/form/:id', livroController.show());
 
 
-    app.post('/livros', [
+    app.post('/livros/form', [
         check('titulo').isLength({ min: 4 }).withMessage('O título deve possuir no mínimo 4 caracteres'),
         check('preco').isCurrency().withMessage('O preço precisa ter um valor monetário válido')
     ], livroController.create());
 
-    app.put('/livros', livroController.update())
+    app.put('/livros/form', livroController.update())
 
     app.delete('/livros/:id', livroController.delete());
 }

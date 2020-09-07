@@ -1,3 +1,5 @@
+const { check, validationResult } = require('express-validator/check');
+
 const LivroDao = require('../dao/LivroDao');
 const db = require('../../config/database');
 

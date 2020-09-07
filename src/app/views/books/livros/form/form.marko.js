@@ -42,7 +42,7 @@ function render(input, out, __component, component, state) {
     out.w("</div>");
   }
 
-  out.w("<form action=\"/livros\" method=\"POST\">");
+  out.w("<form action=\"/livros/form\" method=\"POST\">");
 
   if (data.livro.id) {
     out.w("<div><input type=\"hidden\" name=\"_method\" value=\"PUT\"><input type=\"hidden\" name=\"id\" value=\"" +
