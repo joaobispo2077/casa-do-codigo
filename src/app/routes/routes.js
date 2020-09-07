@@ -3,16 +3,7 @@ const db = require('../../config/database');
 
 module.exports = (app) => {
     app.get('/', function(request, response) {
-        response.send(`
-            <html>
-                <head>
-                    <meta charset="utf-8">
-                </head>
-                <body>
-                    <h1> Hello World </h1>
-                </body> 
-            </html>
-        `);
+        response.marko(require('../views/books/base/home/home.marko'));
     });
 
     app.get('/livros', function(request, response) {

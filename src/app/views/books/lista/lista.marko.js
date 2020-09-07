@@ -44,7 +44,7 @@ function render(input, out, __component, component, state) {
       "\" data-type=\"remocao\">Remover</a></td> </tr>");
   });
 
-  out.w("</table> <script src=\"/static/js/remove-livro.js\">\r\n        </script> ");
+  out.w("</table> <script src=\"/static/js/removeLivro.js\">\r\n        </script> ");
 
   init_components_tag({}, out);
 
