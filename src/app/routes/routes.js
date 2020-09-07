@@ -20,61 +20,15 @@ module.exports = (app) => {
         response.marko(require('../views/books/livros/form/form.marko'), { livro: {} });
     });
 
-    app.get('/livros/form/:id', function(req, resp) {
-        const id = req.params.id;
-        const livroDao = new LivroDao(db);
-
-        livroDao.searchForId(id)
-            .then(livro =>
-                resp.marko(
-                    require('../views/books/livros/form/form.marko'), {
-                        livro: livro
-                    }
-                )
-            )
-            .catch(erro => console.log(erro));
-
-    });
+    app.get('/livros/form/:id', livroController.show());
 
 
     app.post('/livros', [
         check('titulo').isLength({ min: 4 }).withMessage('O título deve possuir no mínimo 4 caracteres'),
         check('preco').isCurrency().withMessage('O preço precisa ter um valor monetário válido')
-    ], function(request, response) {
-        console.log(request.body);
+    ], livroController.create());
 
-        const errors = validationResult(request);
+    app.put('/livros', livroController.update())
 
-        if (!errors.isEmpty()) {
-            return response.marko(
-                require('../views/books/livros/form/form.marko'), {
-                    livro: request.body,
-                    errosValidacao: errors.array()
-                }
-            );
-        }
-
-        const livroDao = new LivroDao(db);
-        livroDao.create(request.body)
-            .then(response.redirect('/livros'))
-            .catch(err => console.log(err));
-    })
-
-    app.put('/livros', function(request, response) {
-        console.log(request.body);
-
-        const livroDao = new LivroDao(db);
-        livroDao.update(request.body)
-            .then(response.redirect('/livros'))
-            .catch(err => console.log(err));
-    })
-
-    app.delete('/livros/:id', function(request, response) {
-        const id = request.params.id;
-
-        const livroDao = new LivroDao(db);
-        livroDao.remove(id)
-            .then(() => response.status(200).end())
-            .catch(err => console.log(err));
-    });
+    app.delete('/livros/:id', livroController.delete());
 }

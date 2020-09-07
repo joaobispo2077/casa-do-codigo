@@ -17,6 +17,69 @@ class LivroController {
                 .catch(err => console.log(err));
         }
     }
+
+    show() {
+        return function(req, resp) {
+            const id = req.params.id;
+            const livroDao = new LivroDao(db);
+
+            livroDao.searchForId(id)
+                .then(livro =>
+                    resp.marko(
+                        require('../views/books/livros/form/form.marko'), {
+                            livro: livro
+                        }
+                    )
+                )
+                .catch(erro => console.log(erro));
+
+        }
+    }
+
+
+    create() {
+        return function(request, response) {
+            console.log(request.body);
+
+            const errors = validationResult(request);
+
+            if (!errors.isEmpty()) {
+                return response.marko(
+                    require('../views/books/livros/form/form.marko'), {
+                        livro: request.body,
+                        errosValidacao: errors.array()
+                    }
+                );
+            }
+
+            const livroDao = new LivroDao(db);
+            livroDao.create(request.body)
+                .then(response.redirect('/livros'))
+                .catch(err => console.log(err));
+        }
+    }
+
+    update() {
+        return function(request, response) {
+            console.log(request.body);
+
+            const livroDao = new LivroDao(db);
+            livroDao.update(request.body)
+                .then(response.redirect('/livros'))
+                .catch(err => console.log(err));
+        }
+    }
+
+    delete() {
+        return function(request, response) {
+            const id = request.params.id;
+
+            const livroDao = new LivroDao(db);
+            livroDao.remove(id)
+                .then(() => response.status(200).end())
+                .catch(err => console.log(err));
+        }
+    }
 }
 
 module.exports = LivroController;
