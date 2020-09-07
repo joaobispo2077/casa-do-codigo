@@ -1,18 +1,18 @@
 const { check, validationResult } = require('express-validator/check');
 
-const LivroDao = require('../dao/LivroDao');
 const db = require('../../config/database');
 
 const LivroController = require('../controllers/LivroController');
 const livroController = new LivroController(db);
 
+const BaseController = require('../controllers/BaseController');
+const baseController = new BaseController();
+
 module.exports = (app) => {
 
 
 
-    app.get('/', function(request, response) {
-        response.marko(require('../views/books/base/home/home.marko'));
-    });
+    app.get('/', baseController.default());
 
     app.get('/livros', livroController.index());
 
