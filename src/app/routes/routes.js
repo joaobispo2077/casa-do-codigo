@@ -12,7 +12,7 @@ module.exports = (app) => {
         livroDao.index()
             .then(livros =>
                 response.marko(
-                    require('../views/books/lista/lista.marko'), {
+                    require('../views/books/livros/lista/lista.marko'), {
                         livros: livros
                     }
                 ))
@@ -20,17 +20,17 @@ module.exports = (app) => {
     });
 
     app.get('/livros/form', function(request, response) {
-        response.marko(require('../views/books/form/form.marko'), { livro: {} });
+        response.marko(require('../views/books/livros/form/form.marko'), { livro: {} });
     });
 
-    app.get('/livros/form/:id', function(req, resp) {
+    app.get('/livros/livros/form/:id', function(req, resp) {
         const id = req.params.id;
         const livroDao = new LivroDao(db);
 
         livroDao.searchForId(id)
             .then(livro =>
                 resp.marko(
-                    require('../views/books/form/form.marko'), {
+                    require('../views/books/livros/form/form.marko'), {
                         livro: livro
                     }
                 )
