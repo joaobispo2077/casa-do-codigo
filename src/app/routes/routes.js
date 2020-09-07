@@ -3,23 +3,18 @@ const { check, validationResult } = require('express-validator/check');
 const LivroDao = require('../dao/LivroDao');
 const db = require('../../config/database');
 
+const LivroController = require('../controllers/LivroController');
+const livroController = new LivroController(db);
+
 module.exports = (app) => {
+
+
+
     app.get('/', function(request, response) {
         response.marko(require('../views/books/base/home/home.marko'));
     });
 
-    app.get('/livros', function(request, response) {
-
-        const livroDao = new LivroDao(db);
-        livroDao.index()
-            .then(livros =>
-                response.marko(
-                    require('../views/books/livros/lista/lista.marko'), {
-                        livros: livros
-                    }
-                ))
-            .catch(err => console.log(err));
-    });
+    app.get('/livros', livroController.index());
 
     app.get('/livros/form', function(request, response) {
         response.marko(require('../views/books/livros/form/form.marko'), { livro: {} });
@@ -53,7 +48,7 @@ module.exports = (app) => {
         if (!errors.isEmpty()) {
             return response.marko(
                 require('../views/books/livros/form/form.marko'), {
-                    livro: {},
+                    livro: request.body,
                     errosValidacao: errors.array()
                 }
             );
