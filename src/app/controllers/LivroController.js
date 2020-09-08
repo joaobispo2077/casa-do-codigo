@@ -1,4 +1,4 @@
-const { check, validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator/check');
 
 const LivroDao = require('../dao/LivroDao');
 const db = require('../../config/database');
@@ -9,6 +9,7 @@ class LivroController {
 
     static routes() {
         return {
+            authenticate: '/livros*',
             index: '/livros',
             create: '/livros/form',
             update: '/livros/form/:id',

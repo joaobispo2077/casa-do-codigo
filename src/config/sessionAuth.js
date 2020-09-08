@@ -54,7 +54,7 @@ module.exports = (app) => {
     app.use(passport.session());
 
 
-    app.use(function(request, response, next) {
+    app.use(function(request, response, next) { //Dependencies Injection
         request.passport = passport;
         next();
     });
