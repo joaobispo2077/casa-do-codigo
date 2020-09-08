@@ -4,6 +4,8 @@ require('marko/express');
 const express = require('express');
 const app = express();
 
+const templates = require('../app/views/templates');
+
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
@@ -29,13 +31,13 @@ routes(app);
 app.use((request, response, next) => response
     .status(404)
     .marko(
-        require('../app/views/books/base/errors/404.marko')
+        templates.base.error404
     ));
 
 app.use((err, request, response, next) => response
     .status(500)
     .marko(
-        require('../app/views/books/base/errors/500.marko')
+        templates.base.error500
     ));
 
 module.exports = app;
