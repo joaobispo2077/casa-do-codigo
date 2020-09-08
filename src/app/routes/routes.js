@@ -9,26 +9,26 @@ const BaseController = require('../controllers/BaseController');
 const baseController = new BaseController();
 
 module.exports = (app) => {
+    const baseRoutes = BaseController.routes();
+    const bookRoutes = LivroController.routes();
 
+    app.get(baseRoutes.home, baseController.default());
 
+    app.get(bookRoutes.index, livroController.index());
 
-    app.get('/', baseController.default());
-
-    app.get('/livros', livroController.index());
-
-    app.get('/livros/form', function(request, response) {
+    app.get(bookRoutes.create, function(request, response) {
         response.marko(require('../views/books/livros/form/form.marko'), { livro: {} });
     });
 
-    app.get('/livros/form/:id', livroController.show());
+    app.get(bookRoutes.update, livroController.show());
 
 
-    app.post('/livros/form', [
+    app.post(bookRoutes.create, [
         check('titulo').isLength({ min: 4 }).withMessage('O título deve possuir no mínimo 4 caracteres'),
         check('preco').isCurrency().withMessage('O preço precisa ter um valor monetário válido')
     ], livroController.create());
 
-    app.put('/livros/form', livroController.update())
+    app.put(bookRoutes.create, livroController.update())
 
-    app.delete('/livros/:id', livroController.delete());
+    app.delete(bookRoutes.delete, livroController.delete());
 }

@@ -5,6 +5,15 @@ const db = require('../../config/database');
 
 class LivroController {
 
+    static routes() {
+        return {
+            index: '/livros',
+            create: '/livros/form',
+            update: '/livros/form/:id',
+            delete: '/livros/:id'
+        }
+    }
+
     index() {
         return function(request, response) {
 
@@ -56,7 +65,7 @@ class LivroController {
 
             const livroDao = new LivroDao(db);
             livroDao.create(request.body)
-                .then(response.redirect('/livros'))
+                .then(response.redirect(LivroController.routes().index))
                 .catch(err => console.log(err));
         }
     }
@@ -67,7 +76,7 @@ class LivroController {
 
             const livroDao = new LivroDao(db);
             livroDao.update(request.body)
-                .then(response.redirect('/livros'))
+                .then(response.redirect(LivroController.routes().index))
                 .catch(err => console.log(err));
         }
     }
