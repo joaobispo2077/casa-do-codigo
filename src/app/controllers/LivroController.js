@@ -47,6 +47,12 @@ class LivroController {
         }
     }
 
+    formIndex() {
+        return function(request, response) {
+            response.marko(require('../views/books/livros/form/form.marko'), { livro: {} });
+        }
+    }
+
 
     create() {
         return function(request, response) {
