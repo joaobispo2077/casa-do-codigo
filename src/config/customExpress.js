@@ -11,6 +11,9 @@ const methodOverride = require('method-override');
 
 app.use('/static', express.static('src/app/public'));
 
+const sessionAuth = require('./sessionAuth');
+sessionAuth(app);
+
 app.use(bodyParser.urlencoded({
     extended: true, //config: receiving complex objects in JSON format
 }));
@@ -34,10 +37,13 @@ app.use((request, response, next) => response
         templates.base.error404
     ));
 
-app.use((err, request, response, next) => response
-    .status(500)
-    .marko(
-        templates.base.error500
-    ));
+app.use((err, request, response, next) => {
+    console.log(err);
+    response
+        .status(500)
+        .marko(
+            templates.base.error500
+        )
+});
 
 module.exports = app;

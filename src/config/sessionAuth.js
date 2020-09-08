@@ -8,7 +8,7 @@ const db = require('./database');
 
 module.exports = (app) => {
 
-    passport.use(new LocalStrategy({
+    passport.use(new LocalStrategy({ // strategy local of auth
             usernameField: 'email',
             passwordField: 'senha'
         },
@@ -28,7 +28,7 @@ module.exports = (app) => {
                 .catch(err => done(err, false));
         }));
 
-    passport.serializedUser((user, done) => {
+    passport.serializeUser((user, done) => {
         const sessionUser = {
             name: user.nome_completo,
             email: user.email
@@ -37,9 +37,8 @@ module.exports = (app) => {
         done(null, sessionUser);
     });
 
-    passport.unserializedUser((sessionUser, done) => {
+    passport.deserializeUser((sessionUser, done) => {
         done(null, sessionUser);
-
     });
 
     app.use(session({
@@ -54,4 +53,9 @@ module.exports = (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
+
+    app.use(function(request, response, next) {
+        request.passport = passport;
+        next();
+    });
 };

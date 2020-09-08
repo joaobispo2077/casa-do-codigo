@@ -1,4 +1,4 @@
-class UsuarioDao {
+class UserDao {
 
     constructor(db) {
         this._db = db;
@@ -12,16 +12,16 @@ class UsuarioDao {
                     FROM usuarios
                     WHERE email = ?
                 `, [email],
-                (erro, usuario) => {
-                    if (erro) {
+                (err, user) => {
+                    if (err) {
                         return reject('Não foi possível encontrar o usuário!');
                     }
 
-                    return resolve(usuario);
+                    return resolve(user);
                 }
             )
         });
     }
 }
 
-module.exports = UsuarioDao;
+module.exports = UserDao;
