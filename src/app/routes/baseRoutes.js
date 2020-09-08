@@ -6,5 +6,8 @@ module.exports = (app) => {
 
     app.get(baseRoutes.home, baseController.default());
 
+    app.route(baseRoutes.login)
+        .get(baseController.login())
+        .post(baseController.handleLogin());
 
 }
